@@ -1,1 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="Carte digitale Chô Chaï Tarbes – Thaï Street Food. Appelez, trouvez l'itinéraire, consultez le menu et ajoutez le restaurant à vos contacts.">
+  <title>Chô Chaï Tarbes — Thaï Street Food</title>
 
+  <style>
+    :root {
+      --bg:#f5f3ec;
+      --card:#fff;
+      --text:#10110f;
+      --muted:#6d7068;
+      --brand:#5f8d3a;
+      --brand-dark:#3f6324;
+      --line:#e7e6df;
+      --black:#0c0d0b;
+      --shadow:0 24px 60px rgba(19,23,16,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      padding:22px 14px 40px;
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(95,141,58,.16),
+          transparent 34%
+        ),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap {
+      width:min(100%,460px);
+      margin:0 auto;
+    }
+
+    .card {
+      background:var(--card);
+      border:1px solid rgba(16,17,15,.06);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero {
+      position:relative;
+      text-align:center;
+      padding:34px 24px 26px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(11,12,10,.96),
+          rgba(15,17,13,.98)
+        );
+      color:#fff;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:1px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(95,141,58,.8),
+          transparent
+        );
+    }
+
+    .logo-shell {
+      width:154px;
+      height:154px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      padding:4px;
+      background:
+        linear-gradient(
+          145deg,
+          #7caf51,
+          #2f4b1e
+        );
+      box-shadow:0 16px 34px rgba(0,0,0,.32);
+    }
+
+    .logo {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      border-radius:50%;
+      background:#000;
+    }
+
+    h1 {
+      margin:0;
+      font-size:clamp(29px,7vw,38px);
+      letter-spacing:-.02em;
+      font-weight:800;
+    }
+
+    .tagline {
+      margin:8px 0 0;
+      color:#91b56d;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:13px;
+    }
+
+    .subtag {
+      margin:11px auto 0;
+      max-width:320px;
+      color:rgba(255,255,255,.72);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .content {
+      padding:20px;
+    }
+
+    .primary {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      min-height:56px;
+      border-radius:16px;
+      text-decoration:none;
+      font-weight:800;
+      background:
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--brand-dark)
+        );
+      color:#fff;
+      box-shadow:0 12px 24px rgba(95,141,58,.24);
+    }
+
+    .section {
+      margin-top:18px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:700;
+      margin-bottom:7px;
+    }
+
+    .value {
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+      margin-bottom:12px;
+    }
+
+    .meta {
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .action {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      width:100%;
+      padding:15px 16px;
+      margin-top:10px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:750;
+      background:var(--black);
+      color:#fff;
+    }
+
+    .action.secondary {
+      background:#f2f2ee;
+      color:var(--text);
+      border:1px solid #e3e3dc;
+    }
+
+    .left {
+      display:inline-flex;
+      align-items:center;
+      gap:11px;
+    }
+
+    .icon {
+      width:22px;
+      height:22px;
+      display:inline-grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+
+    .arrow {
+      opacity:.62;
+      font-size:18px;
+    }
+
+    .hours {
+      margin-top:18px;
+      padding:16px;
+      border-radius:18px;
+      background:#f7f7f3;
+      border:1px solid var(--line);
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .hours strong {
+      display:block;
+      margin-bottom:3px;
+    }
+
+    .footer {
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      margin:16px 0 2px;
+    }
+
+    @media (max-width:380px) {
+      body {
+        padding-left:10px;
+        padding-right:10px;
+      }
+
+      .content {
+        padding:16px;
+      }
+
+      .hero {
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .logo-shell {
+        width:136px;
+        height:136px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <main class="card">
+
+      <header class="hero">
+
+        <div class="logo-shell">
+          <img
+            src="logo.jpg"
+            alt="Logo Chô Chaï"
+            class="logo"
+          >
+        </div>
+
+        <h1>Chô Chaï Tarbes</h1>
+
+        <div class="tagline">
+          Thaï Street Food
+        </div>
+
+        <p class="subtag">
+          Cuisine thaïlandaise généreuse, rapide et pleine de saveurs.
+        </p>
+
+      </header>
+
+
+      <section class="content">
+
+
+        <!-- AJOUTER AUX CONTACTS -->
+
+        <a
+          class="primary"
+          href="contact.vcf"
+        >
+          <span class="icon">👤</span>
+          Ajouter aux contacts
+        </a>
+
+
+
+        <!-- TELEPHONE -->
+
+        <div class="section">
+
+          <div class="eyebrow">
+            Téléphone
+          </div>
+
+          <div class="value">
+            05 62 92 53 77
+          </div>
+
+          <a
+            class="action"
+            href="tel:+33562925377"
+          >
+
+            <span class="left">
+
+              <span class="icon">
+                📞
+              </span>
+
+              Appeler
+
+            </span>
+
+            <span class="arrow">
+              ›
+            </span>
+
+          </a>
+
+        </div>
+
+
+
+        <!-- ADRESSE -->
+
+        <div class="section">
+
+          <div class="eyebrow">
+            Adresse
+          </div>
+
+          <div class="value">
+            28 Avenue des Forges, 65000 Tarbes
+          </div>
+
+          <a
+            class="action"
+            href="https://www.google.fr/maps/place/Ch%C3%B4+Cha%C3%AF+Tarbes+-+Tha%C3%AF+Street+Food/@43.2401628,0.078977,17z/data=!3m2!4b1!5s0x12a9d3f0ffa217eb:0x21e8ca1bf60be6d9!4m6!3m5!1s0x12a9d3304dafc249:0x75fdffe58faf708c!8m2!3d43.2401628!4d0.0815573!16s%2Fg%2F11rpdh37pl?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <span class="left">
+
+              <span class="icon">
+                📍
+              </span>
+
+              Itinéraire / Google Maps
+
+            </span>
+
+            <span class="arrow">
+              ›
+            </span>
+
+          </a>
+
+        </div>
+
+
+
+        <!-- ACTIONS RESTAURANT -->
+
+        <div class="section">
+
+
+          <!-- UBER EATS -->
+
+          <a
+            class="action"
+            href="https://www.ubereats.com/fr/store/cho-chai-tarbes/etlB1WAEXWiG_dYNfLWa-A?srsltid=AfmBOoq8etxf7yIxGW4i5PVnhB2AOYW1yKfxtwKRBkSzocM0sqcVipGU"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <span class="left">
+
+              <span class="icon">
+                🛵
+              </span>
+
+              Commander sur Uber Eats
+
+            </span>
+
+            <span class="arrow">
+              ›
+            </span>
+
+          </a>
+
+
+
+          <!-- MENU -->
+
+          <a
+            class="action"
+            href="https://chochai.com/menus/Tarbes/Menu-Tarbes-2025.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <span class="left">
+
+              <span class="icon">
+                🍜
+              </span>
+
+              Voir le menu
+
+            </span>
+
+            <span class="arrow">
+              ›
+            </span>
+
+          </a>
+
+
+
+          <!-- SITE WEB -->
+
+          <a
+            class="action secondary"
+            href="https://www.cho-chai.fr/"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <span class="left">
+
+              <span class="icon">
+                🌐
+              </span>
+
+              Site web
+
+            </span>
+
+            <span class="arrow">
+              ›
+            </span>
+
+          </a>
+
+        </div>
+
+
+
+        <!-- HORAIRES -->
+
+        <div class="hours">
+
+          <div class="icon">
+            🕒
+          </div>
+
+          <div>
+
+            <strong>
+              Horaires
+            </strong>
+
+            <div class="meta">
+              Ouvert 7j/7<br>
+              11h00–14h00 · 18h00–23h00
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="footer">
+          Chô Chaï Tarbes · Carte digitale
+        </div>
+
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
